@@ -12,9 +12,9 @@
 
   <!-- Message d'erreurs de title -->
   <div *ngIf="title.errors">
-    <span *ngIf="title.errors?.required">Le titre est requis</span>
-    <span *ngIf="title.errors?.minlength">La longueur minimale doit être supérieure à 5</span>
-    <span *ngIf="title.errors?.maxlength">La longueur maximale doit être inférieure à 30</span>
+    <span *ngIf="title.errors?.['required']">Le titre est requis</span>
+    <span *ngIf="title.errors?.['minlength']">La longueur minimale doit être supérieure à 5</span>
+    <span *ngIf="title.errors?.['maxlength']">La longueur maximale doit être inférieure à 30</span>
   </div>
 
 
@@ -25,7 +25,7 @@
 
  <!-- Message d'erreurs de quantity -->
   <div *ngIf="quantity.errors">
-    <span *ngIf="quantity.errors.required">Le champ quantité est requis</span>
+    <span *ngIf="quantity.errors?.['required']">Le champ quantité est requis</span>
   </div>
 
 
@@ -36,7 +36,7 @@
 
 <!-- Message d'erreurs de date -->
   <div *ngIf="date.errors">
-    <span *ngIf="date.errors.required">Le champ email est requis</span>
+    <span *ngIf="date.errors?.['required']">Le champ email est requis</span>
   </div>
 
 
@@ -47,8 +47,8 @@
 
   <!-- Message d'erreurs de contact -->
   <div *ngIf="contact.errors">
-    <span *ngIf="contact.errors.required">Le champ email est requis</span>
-    <span *ngIf="contact.errors.email">L'adresse email doit être valide</span>
+    <span *ngIf="contact.errors?.['required']">Le champ email est requis</span>
+    <span *ngIf="contact.errors?.['email']">L'adresse email doit être valide</span>
   </div>
 
 
