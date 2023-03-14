@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { MyFormComponent } from './my-form/my-form.component';
+import { SearchMovieComponent } from './search-movie/search-movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyFormComponent
+    MyFormComponent,
+    SearchMovieComponent
   ],
   imports: [
     BrowserModule,

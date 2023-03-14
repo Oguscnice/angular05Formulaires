@@ -1,19 +1,31 @@
-import { AbstractControl, ValidatorFn, ValidationErrors } from "@angular/forms";
+import {
+  AbstractControl,
+  ValidatorFn,
+  ValidationErrors,
+  FormControl,
+} from '@angular/forms';
 
 /**
  * Check if control value is inferior to date in parameter
  * @export
  */
-export function minDateValidator(minDate: Date): ValidatorFn {
+export function rangeDateValidator(
+  min: Date,
+  max: Date
+): ValidationErrors | null {
+  // parse control value to Date
+  // if(control.value === null ){
+  //   return null;
+  // }
   return (control: AbstractControl): ValidationErrors | null => {
-    // parse control value to Date
-    const date = new Date(control.value);
+    const dateControl: Date = new Date(control.value);
+    const today: Date = new Date(max);
+    const date1: Date = new Date(min);
     // check if control value is superior to date given in parameter
-    if (minDate.getTime() < date.getTime()) {
-      return null;
+    if (date1 <= dateControl && dateControl <= today) {
+      return { 'min' : min , max};
     } else {
-      return { 'min': { value: control.value, expected: minDate } };
-
+      return null;
     }
-  };
+  }
 }

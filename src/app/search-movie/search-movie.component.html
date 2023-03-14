@@ -1,0 +1,71 @@
+<p>search-movie works!</p>
+<form
+  (ngSubmit)="shearchMovie.valid && onSubmit()"
+  [formGroup]="shearchMovie"
+  #myForm="ngForm"
+>
+  <div>Form submitted ? {{ myForm.submitted }}</div>
+  <div>valid ? {{ shearchMovie.valid }}</div>
+  <div>Form invalid ? {{ shearchMovie.invalid }}</div>
+
+  <div formGroupName="login">
+    <label for="identifiant-movie">ID</label>
+    <input
+      id="identifiant-movie"
+      name="identifiant-movie"
+      type="text"
+      formControlName="identifiant"
+    />
+
+    <label for="title-movie">Title</label>
+    <input
+      id="title-movie"
+      name="title-movie"
+      type="text"
+      formControlName="title"
+    />
+  </div>
+  <div *ngIf="isSubmit && (shearchMovie.get('login.identifiant')?.errors?.['required'] && shearchMovie.get('login.title')?.errors?.['required'])">
+    <span
+      *ngIf="shearchMovie.get('login.identifiant')?.errors?.['required'] && shearchMovie.get('login.title')?.errors?.['required']"
+      >"L'un des deux champs 'Identifiant' ou 'Titre' doit être renseigné"</span
+    >
+  </div>
+
+  <div>
+    <label for="type-movie" >Type</label>
+    <select name="type-movie" id="type-movie">
+      <option value="serie">Série</option>
+      <option value="film">Film</option>
+      <option value="episode">Episode</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="date-movie">Date de commande</label>
+    <input
+      id="date-movie"
+      name="date-movie"
+      type="date"
+      formControlName="date"
+    />
+  </div>
+  <div *ngIf="isSubmit && !shearchMovie.controls.date.errors">
+    <span *ngIf="!shearchMovie.controls.date.errors"
+      >La date doite être comprise entre 1900 et l'année actuelle</span
+    >
+  </div>
+
+  <div *ngIf="!shearchMovie.get('login.identifiant')?.errors?.['required']">
+    <label for="fiche-movie" formControlName="fiche">Fiche</label>
+    <select name="fiche-movie" id="fiche-movie">
+      <option value="" selected> ---</option>
+      <option value="courte">Courte</option>
+      <option value="complete">Complete</option>
+    </select>
+  </div>
+
+  <button type="reset">Restaurer</button>
+  <button type="submit" (click)="onSubmit()">Sauvegarder</button>
+
+</form>
